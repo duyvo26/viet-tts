@@ -5,18 +5,18 @@ from typing import Tuple
 import torch
 import torch.utils.checkpoint as ckpt
 
-from viettts.transformer.convolution import ConvolutionModule
-from viettts.transformer.encoder_layer import TransformerEncoderLayer
-from viettts.transformer.encoder_layer import ConformerEncoderLayer
-from viettts.transformer.positionwise_feed_forward import PositionwiseFeedForward
-from viettts.utils.class_utils import (
+from VietTTS.transformer.convolution import ConvolutionModule
+from VietTTS.transformer.encoder_layer import TransformerEncoderLayer
+from VietTTS.transformer.encoder_layer import ConformerEncoderLayer
+from VietTTS.transformer.positionwise_feed_forward import PositionwiseFeedForward
+from VietTTS.utils.class_utils import (
     EMB_CLASSES,
     SUBSAMPLE_CLASSES,
     ATTENTION_CLASSES,
     ACTIVATION_CLASSES,
 )
-from viettts.utils.mask import make_pad_mask
-from viettts.utils.mask import add_optional_chunk_mask
+from VietTTS.utils.mask import make_pad_mask
+from VietTTS.utils.mask import add_optional_chunk_mask
 
 
 class BaseEncoder(torch.nn.Module):

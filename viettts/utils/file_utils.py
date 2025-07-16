@@ -7,7 +7,7 @@ from glob import glob
 from loguru import logger
 from huggingface_hub import snapshot_download
 
-from viettts.utils.vad import get_speech
+from VietTTS.utils.vad import get_speech
 
 import torchaudio
 import os
@@ -102,4 +102,4 @@ def load_voices(voice_dir: str):
 
 
 def download_model(save_dir: str):
-    snapshot_download(repo_id="dangvansam/viet-tts", local_dir=save_dir)
+    snapshot_download(repo_id="duyv/viet-tts", local_dir=save_dir)

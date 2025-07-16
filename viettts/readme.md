@@ -1,0 +1,1 @@
+`https://huggingface.co/duyv/viet-tts` -> `VietTTS/models/`

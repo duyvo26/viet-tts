@@ -6,8 +6,8 @@ import subprocess
 from loguru import logger
 from rich.table import Table
 from rich.console import Console
-from viettts.tts import TTS
-from viettts.utils.file_utils import load_prompt_speech_from_file, load_voices
+from VietTTS.tts import TTS
+from VietTTS.utils.file_utils import load_prompt_speech_from_file, load_voices
 
 
 AUDIO_DIR = 'samples'
@@ -20,10 +20,10 @@ MODEL_DIR = 'pretrained-models'
 def start_server(host: str, port: int, workers: int):
     """Start API server (OpenAI TTS API compatible).
 
-    Usage: viettts server --host 0.0.0.0 --port 8298 -w 4
+    Usage: VietTTS server --host 0.0.0.0 --port 8298 -w 4
     """
     logger.info("Starting server")
-    cmd = f'gunicorn viettts.server:app \
+    cmd = f'gunicorn VietTTS.server:app \
         -k uvicorn.workers.UvicornWorker \
         --bind {host}:{port} \
         --workers {workers} \
@@ -44,7 +44,7 @@ def start_server(host: str, port: int, workers: int):
 def synthesis(text: str, voice: str, speed: float, output: str):
     """Synthesis audio from text and save to file.
 
-    Usage: viettts synthesis --text 'Xin chào VietTTS' --voice nu-nhe-nhang --voice 8 --speed 1.2 --output test_nu-nhe-nhang.wav
+    Usage: VietTTS synthesis --text 'Xin chào VietTTS' --voice nu-nhe-nhang --voice 8 --speed 1.2 --output test_nu-nhe-nhang.wav
     """
     logger.info("Starting synthesis")
     st = time.perf_counter()
@@ -64,7 +64,7 @@ def synthesis(text: str, voice: str, speed: float, output: str):
             voice = voice_map.get(voice)
 
     if not os.path.exists(voice):
-        logger.error(f'voice is not available. Use --voice <voice-name/voice-id/local-file> or run `viettts show-voices` to get available voices.')
+        logger.error(f'voice is not available. Use --voice <voice-name/voice-id/local-file> or run `VietTTS show-voices` to get available voices.')
         return
 
     logger.info('Loading model')
@@ -84,7 +84,7 @@ def synthesis(text: str, voice: str, speed: float, output: str):
 def show_voice():
     """Print all available voices.
 
-    Usage: viettts show-voices
+    Usage: VietTTS show-voices
     """
     voice_map = load_voices(AUDIO_DIR)
     console = Console()
